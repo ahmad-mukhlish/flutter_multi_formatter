@@ -325,7 +325,7 @@ class MoneyInputFormatter extends TextInputFormatter {
     var oldSelectionEnd = oldValue.selection.end;
     TextEditingValue value = oldSelectionEnd > -1 ? oldValue : newValue;
     String oldSubstrBeforeSelection = oldSelectionEnd > -1
-        ? value.text.substring(0, value.selection.end)
+        ? value.text.substring(0, min(value.selection.end, value.text.length))  // Fixed line 328
         : '';
     int numThousandSeparatorsInOldSub = _countSymbolsInString(
       oldSubstrBeforeSelection,
